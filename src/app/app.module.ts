@@ -4,14 +4,16 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from "@angular/common/http";
 
 import { AppComponent } from './app.component';
-import { CockpitComponent } from './cockpit/cockpit.component';
-import { ServerElementComponent } from './server-element/server-element.component';
+import {BasicHighlightDirective} from "./basic-highlight/basic-highlight.directive";
+import { BetterHighlightDirective } from './better-highlight/better-highlight.directive';
+import { UnlessDirective } from './unless/unless.directive';
 
 @NgModule({
   declarations: [
+    BasicHighlightDirective,
     AppComponent,
-    CockpitComponent,
-    ServerElementComponent
+    BetterHighlightDirective,
+    UnlessDirective
   ],
   imports: [
     BrowserModule,
