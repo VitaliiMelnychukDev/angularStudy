@@ -1,26 +1,30 @@
-import {Component, OnInit} from '@angular/core';
-import {UsersService} from "./users-service";
+import { Component } from '@angular/core';
+import { NgForm } from "@angular/forms";
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit{
-  user1Activated = false;
-  user2Activated = false;
+export class AppComponent {
+  defaultQustion = 'pet';
+  answer = '';
+  genders = ['male', 'female'];
+  user = {
+    username: ''
+  };
+  submitted = false;
 
-  constructor(private usersService: UsersService) {}
+  suggestUserName(form: NgForm) {
+    form.controls['userData']
+      .controls['username']
+      .setValue('Superman');
+  }
 
-  ngOnInit(): void {
-    this.usersService.usersActivated.subscribe(
-      (id: number) => {
-        if (id === 1) {
-          this.user1Activated = true;
-        } else if (id === 2) {
-          this.user2Activated = true;
-        }
-      }
-    );
+  onSubmit(form: NgForm) {
+    this.submitted = true;
+    this.user.username = form.value.userData.username;
+
+    form.reset();
   }
 }
